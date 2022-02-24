@@ -1,0 +1,30 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+PS3='Select your colorscheme: '
+colorschemes=("tokyonight night" "tokyonight storm" "tokyonight day")
+root=~/.termux
+
+if [ ! -d "$root" ]; then
+	mkdir "$root"
+fi
+
+select option in "${colorschemes[@]}"; do
+	case $option in
+	"tokyonight night")
+		cp colorschemes/tokyonight-night.properties ~/.termux/colors.properties
+		termux-reload-settings
+		exit
+		;;
+	"tokyonight storm")
+		cp colorschemes/tokyonight-storm.properties ~/.termux/colors.properties
+		termux-reload-settings
+		exit
+		;;
+	"tokyonight day")
+		cp colorschemes/tokyonight-day.properties ~/.termux/colors.properties
+		termux-reload-settings
+		exit
+		;;
+	*) echo "invalid option $REPLY" ;;
+	esac
+done
